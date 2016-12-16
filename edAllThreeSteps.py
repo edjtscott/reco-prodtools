@@ -25,12 +25,14 @@ print "PDGid = ",PDGid
 print "PT = ",PT
 os.system('./edSubmitGunImproved.sh GSD '+PDGid+' '+PT)
 
-time.sleep(60)
-jobstring = processCmd('bjobs | grep GSD | wc -l').split('\n')[1]
-while jobstring != '0':
+jobstring = ''
+nJobs = ''
+while nJobs != '0':
     print "GSD jobs still running"
     time.sleep(60)
-    jobstring = processCmd('bjobs')
+    jobstring = processCmd('bjobs | grep GSD | wc -l').split('\n')
+    if len(jobstring) > 1: nJobs = jobstring[1]
+    else: nJobs = jobstring[0]
 
 print "about to submit RECO jobs"
 print "PDGid = ",PDGid
@@ -39,17 +41,19 @@ os.system('./edSubmitGunImproved.sh RECO '+PDGid+' '+PT)
 
 print "DONE - RECO jobs are submitted"
 
-#time.sleep(60)
-#jobstring = processCmd('bjobs | grep RECO | wc -l').split('\n')[1]
-#while jobstring != '0':
-#    print "RECO jobs still running"
-#    time.sleep(60)
-#    jobstring = processCmd('bjobs')
-#
-#print "about to submit NTUP jobs"
-#print "PDGid = ",PDGid
-#print "PT = ",PT
-#os.system('./edSubmitGunImproved.sh NTUP '+PDGid+' '+PT)
-#
-#print ""
-#print "DONE - NTUP jobs are submitted"
+jobstring = ''
+nJobs = ''
+while nJobs != '0':
+    print "RECO jobs still running"
+    time.sleep(60)
+    jobstring = processCmd('bjobs | grep RECO | wc -l').split('\n')
+    if len(jobstring) > 1: nJobs = jobstring[1]
+    else: nJobs = jobstring[0]
+
+print "about to submit NTUP jobs"
+print "PDGid = ",PDGid
+print "PT = ",PT
+os.system('./edSubmitGunImproved.sh NTUP '+PDGid+' '+PT)
+
+print ""
+print "DONE - NTUP jobs are submitted"
