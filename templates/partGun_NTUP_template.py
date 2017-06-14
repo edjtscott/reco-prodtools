@@ -4,7 +4,7 @@ from Configuration.StandardSequences.Eras import eras
 process = cms.Process("Demo")
 process.load('Configuration.StandardSequences.Services_cff')
 process.load('SimGeneral.HepPDTESSource.pythiapdt_cfi')
-process.load('Configuration.Geometry.GeometryExtended2023D13Reco_cff')
+process.load('Configuration.Geometry.GeometryExtended2023D17Reco_cff')
 process.load('Configuration.StandardSequences.MagneticField_cff')
 process.load('Configuration.EventContent.EventContent_cff')
 process.load("FWCore.MessageService.MessageLogger_cfi")
@@ -49,7 +49,7 @@ process.TFileService = cms.Service("TFileService",
 
                                    )
 
-reRunClustering = True
+reRunClustering = DUMMYRECLUST
 
 if reRunClustering:
     # process.hgcalLayerClusters.minClusters = cms.uint32(0)
