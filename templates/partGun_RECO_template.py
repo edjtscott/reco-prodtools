@@ -147,11 +147,11 @@ process = customiseEarlyDelete(process)
 # End adding early deletion
 
 # Customisation from command line
-# process.hgcalLayerClusters.minClusters = cms.uint32(3)
+process.hgcalLayerClusters.minClusters = cms.uint32(2)
 #those below are all now the default values - just there to illustrate what can be customised
 #process.hgcalLayerClusters.dependSensor = cms.bool(True)
 #process.hgcalLayerClusters.ecut = cms.double(3.) #multiple of sigma noise if dependSensor is true
 #process.hgcalLayerClusters.kappa = cms.double(9.) #multiple of sigma noise if dependSensor is true
-#process.hgcalLayerClusters.multiclusterRadii = cms.vdouble(2.,5.,5.) #(EE,FH,BH), in com
+process.hgcalLayerClusters.multiclusterRadii = cms.vdouble(2.,5.,5.) #(EE,FH,BH), in com
 #process.hgcalLayerClusters.multiclusterRadii = cms.vdouble(5.,5.,5.) #(EE,FH,BH), in com
-#process.hgcalLayerClusters.deltac = cms.vdouble(2.,2.,2.) #(EE,FH,BH), in cm
+process.hgcalLayerClusters.deltac = cms.vdouble(2.,2.,5.) #(EE,FH,BH), in cm

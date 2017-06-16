@@ -21,7 +21,8 @@ QUEUE="8nh"
 NPART=1
 #PT=35
 
-TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_AcceptedPR_PU200"
+#TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_AcceptedPR_PU200"
+TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_D17_PU200"
 
 EOS="/eos/cms/store/group/dpg_hgcal/comm_hgcal/escott"
 
@@ -29,14 +30,17 @@ RELVAL="/RelValDoublePiPt25Eta17_27/CMSSW_9_0_0_pre5-PU25ns_90X_upgrade2023_real
 
 #DATE="20160729" #for "old" sample from Clemens
 
-GSDDATE="20170530" #using PR as accepted
+#GSDDATE="20170530" #using PR as accepted
+GSDDATE="20170615" #using PR as accepted, but with D17 now
 
 #RECODATE="20170530"
-RECODATE="20170531"
+#RECODATE="20170531"
+RECODATE="20170615"
 
-#EXTRALABEL=""
+EXTRALABEL=""
 #EXTRALABEL="_50mm"
-EXTRALABEL="_EE2FH5BH5"
+#EXTRALABEL="_EE2FH5BH5"
+#EXTRALABEL="_255_225"
 
 NPU="200"
 
