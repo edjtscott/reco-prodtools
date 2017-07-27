@@ -31,11 +31,16 @@ RELVAL="/RelValDoublePiPt25Eta17_27/CMSSW_9_0_0_pre5-PU25ns_90X_upgrade2023_real
 #DATE="20160729" #for "old" sample from Clemens
 
 #GSDDATE="20170530" #using PR as accepted
-GSDDATE="20170615" #using PR as accepted, but with D17 now
+#GSDDATE="20170615" #using PR as accepted, but with D17 now
+#GSDDATE="20170616" #using PR as accepted, but with D17 now
+GSDDATE="20170727" #using PR as accepted, but with D17 now
 
 #RECODATE="20170530"
 #RECODATE="20170531"
-RECODATE="20170615"
+#RECODATE="20170615"
+#RECODATE="20170616"
+#RECODATE="20170619"
+RECODATE="20170727"
 
 EXTRALABEL=""
 #EXTRALABEL="_50mm"

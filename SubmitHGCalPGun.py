@@ -8,7 +8,8 @@ import time
 import math
 import re
 
-eosExec = '/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
+#eosExec = '/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
+eosExec = '/afs/cern.ch/project/eos/installation/0.3.15/bin/eos.select'
 
 
 ### parsing input options
@@ -256,8 +257,8 @@ process.mix.maxBunch = cms.int32(3)
             sys.exit()
     elif (opt.DTIER == 'RECO' or opt.DTIER == 'NTUP'):
         if not DASquery:
-            #outDir = opt.inDir
-            outDir = "_".join([partGunType, tag])
+            outDir = opt.inDir
+            #outDir = "_".join([partGunType, tag])
         else:
             # create an ouput directory based on relval name
             outDir=opt.RELVAL.replace('/','_')
@@ -271,8 +272,8 @@ process.mix.maxBunch = cms.int32(3)
         recoInputPrefix = 'file:'+currentDir+'/'+outDir+'/'+previousDataTier+'/'
     else:
         processCmd(eosExec + ' mkdir -p '+opt.eosArea+'/'+outDir+'/'+opt.DTIER+'/');
-        #recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+outDir+'/'+previousDataTier+'/'
-        recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+opt.inDir+'/'+previousDataTier+'/'
+        recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+outDir+'/'+previousDataTier+'/'
+        #recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+opt.inDir+'/'+previousDataTier+'/'
     # in case of relval always take reconInput from /store...
     if DASquery: recoInputPrefix=''
 
