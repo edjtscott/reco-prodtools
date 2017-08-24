@@ -21,8 +21,7 @@ QUEUE="8nh"
 NPART=1
 #PT=35
 
-#TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_AcceptedPR"
-TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_D17"
+TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_LogWeightingOff"
 
 EOS="/eos/cms/store/group/dpg_hgcal/comm_hgcal/escott"
 
@@ -30,24 +29,18 @@ RELVAL="/RelValDoublePiPt25Eta17_27/CMSSW_9_0_0_pre5-PU25ns_90X_upgrade2023_real
 
 #DATE="20160729" #for "old" sample from Clemens
 
-#GSDDATE="20170530" #using PR as accepted
-#GSDDATE="20170531" #using PR as accepted
-#GSDDATE="20170614" #using PR as accepted, but with D17 now
-#GSDDATE="20170615" #using PR as accepted, but with D17 now
-#GSDDATE="20170616" #using PR as accepted, but with D17 now
-GSDDATE="20170727" #using PR as accepted, but with D17 now
+GSDDATE="20170807"
 
-#RECODATE="20170530"
-#RECODATE="20170531"
-#RECODATE="20170614"
-#RECODATE="20170615"
-#RECODATE="20170616"
-RECODATE="20170727"
+RECODATE="20170807"
+#RECODATE="20170808"
 
-EXTRALABEL=""
-#EXTRALABEL="_50mm"
-#EXTRALABEL="_EE2FH5BH5"
+#EXTRALABEL=""
 #EXTRALABEL="_255_225"
+#EXTRALABEL="_NowOn"
+#EXTRALABEL="_DropNoMultis"
+#EXTRALABEL="_222_222"
+#EXTRALABEL="_225_255"
+EXTRALABEL="_1dot5"
 
 
 if [ "$TIER" == "GSD" ]
@@ -63,6 +56,7 @@ if [ "$TIER" == "RECO" ]
 then
   EVTSPERJOB=200
   echo "python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag $TAG$EXTRALABEL --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$GSDDATE"
+  #python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag $TAG$EXTRALABEL --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$GSDDATE --dry-run
   python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag $TAG$EXTRALABEL --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$GSDDATE
 fi
 
@@ -71,6 +65,7 @@ if [ "$TIER" == "NTUP" ]
 then
   EVTSPERJOB=200
   echo "python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag $TAG${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}${EXTRALABEL}_$RECODATE"
-  python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag ${TAG}${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}${EXTRALABEL}_$RECODATE
+  #python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag ${TAG}${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}${EXTRALABEL}_$RECODATE #--noReClust
+  python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag ${TAG}${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$RECODATE #--noReClust
   #python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --eosArea $EOS -r $RELVAL #--dry-run
 fi

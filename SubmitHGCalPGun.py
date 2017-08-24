@@ -257,7 +257,7 @@ process.mix.maxBunch = cms.int32(3)
             sys.exit()
     elif (opt.DTIER == 'RECO' or opt.DTIER == 'NTUP'):
         if not DASquery:
-            outDir = opt.inDir
+            outDir = opt.inDir #FIXME
             #outDir = "_".join([partGunType, tag])
         else:
             # create an ouput directory based on relval name
@@ -272,8 +272,8 @@ process.mix.maxBunch = cms.int32(3)
         recoInputPrefix = 'file:'+currentDir+'/'+outDir+'/'+previousDataTier+'/'
     else:
         processCmd(eosExec + ' mkdir -p '+opt.eosArea+'/'+outDir+'/'+opt.DTIER+'/');
-        recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+outDir+'/'+previousDataTier+'/'
-        #recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+opt.inDir+'/'+previousDataTier+'/'
+        #recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+outDir+'/'+previousDataTier+'/' #FIXME
+        recoInputPrefix = 'root://eoscms.cern.ch/'+opt.eosArea+'/'+opt.inDir+'/'+previousDataTier+'/'
     # in case of relval always take reconInput from /store...
     if DASquery: recoInputPrefix=''
 
