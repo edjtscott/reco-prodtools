@@ -10,7 +10,7 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 process.load('RecoLocalCalo.HGCalRecProducers.HGCalLocalRecoSequence_cff')
-#process.load("RecoLocalCalo.HGCalRecProducers.hgcalLayerClusters_cfi")
+process.load("RecoLocalCalo.HGCalRecProducers.hgcalLayerClusters_cfi")
 
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase2_realistic', '')
@@ -52,13 +52,16 @@ process.TFileService = cms.Service("TFileService",
 reRunClustering = DUMMYRECLUST
 
 if reRunClustering:
-    # process.hgcalLayerClusters.minClusters = cms.uint32(0)
     # process.hgcalLayerClusters.realSpaceCone = cms.bool(True)
-    # process.hgcalLayerClusters.multiclusterRadius = cms.double(2.)  # in cm if realSpaceCone is true
     # process.hgcalLayerClusters.dependSensor = cms.bool(True)
     # process.hgcalLayerClusters.ecut = cms.double(3.)  # multiple of sigma noise if dependSensor is true
     # process.hgcalLayerClusters.kappa = cms.double(9.)  # multiple of sigma noise if dependSensor is true
-    #process.hgcalLayerClusters.deltac = cms.vdouble(2.,3.,5.) #specify delta c for each subdetector separately
+    process.hgcalLayerClusters.minClusters = cms.uint32(2)
+    #process.hgcalLayerClusters.minClusters = cms.uint32(0)
+    process.hgcalLayerClusters.multiclusterRadii = cms.vdouble(2.,5.,5.) #(EE,FH,BH), in cm
+    process.hgcalLayerClusters.deltac = cms.vdouble(2.,2.,5.) #(EE,FH,BH), in cm
+    #process.hgcalLayerClusters.deltac = cms.vdouble(1.5,2.,5.) #(EE,FH,BH), in cm
+    #process.hgcalLayerClusters.logWeightZero = cms.double(3.5) #normal weighting if less than 0 (default -1)
     process.p = cms.Path(process.hgcalLayerClusters+process.ana)
 else:
     process.p = cms.Path(process.ana)
