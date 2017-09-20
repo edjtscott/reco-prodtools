@@ -21,7 +21,7 @@ QUEUE="8nh"
 NPART=1
 #PT=35
 
-TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_LogWeightingOff"
+TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_93X"
 
 EOS="/eos/cms/store/group/dpg_hgcal/comm_hgcal/escott"
 
@@ -29,18 +29,20 @@ RELVAL="/RelValDoublePiPt25Eta17_27/CMSSW_9_0_0_pre5-PU25ns_90X_upgrade2023_real
 
 #DATE="20160729" #for "old" sample from Clemens
 
-GSDDATE="20170807"
+#GSDDATE="20170807"
+GSDDATE="20170824"
 
-RECODATE="20170807"
+RECODATE="20170824"
 #RECODATE="20170808"
 
-#EXTRALABEL=""
+EXTRALABEL=""
 #EXTRALABEL="_255_225"
 #EXTRALABEL="_NowOn"
-#EXTRALABEL="_DropNoMultis"
 #EXTRALABEL="_222_222"
 #EXTRALABEL="_225_255"
-EXTRALABEL="_1dot5"
+#EXTRALABEL="_1dot5"
+#EXTRALABEL="_DropNoMultis"
+EXTRALABEL="_FH4cm"
 
 
 if [ "$TIER" == "GSD" ]

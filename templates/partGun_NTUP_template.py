@@ -16,6 +16,7 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase2_realistic', '')
 
 from FastSimulation.Event.ParticleFilter_cfi import *
+from RecoLocalCalo.HGCalRecProducers.HGCalRecHit_cfi import dEdX_weights as dEdX
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(DUMMYEVTSPERJOB) )
 
@@ -36,6 +37,9 @@ process.ana = cms.EDAnalyzer('HGCalAnalysis',
                              rawRecHits = cms.bool(True),
                              readOfficialReco = cms.bool(DUMMYROR),
                              readCaloParticles = cms.bool(False),
+                             storePCAvariables = cms.bool(False),
+                             recomputePCA = cms.bool(False),
+                             dEdXWeights = dEdX,
                              layerClusterPtThreshold = cms.double(-1),  # All LayerCluster belonging to a multicluster are saved; this Pt threshold applied to the others
                              TestParticleFilter = ParticleFilterBlock.ParticleFilter
 )
@@ -59,7 +63,8 @@ if reRunClustering:
     process.hgcalLayerClusters.minClusters = cms.uint32(2)
     #process.hgcalLayerClusters.minClusters = cms.uint32(0)
     process.hgcalLayerClusters.multiclusterRadii = cms.vdouble(2.,5.,5.) #(EE,FH,BH), in cm
-    process.hgcalLayerClusters.deltac = cms.vdouble(2.,2.,5.) #(EE,FH,BH), in cm
+    #process.hgcalLayerClusters.deltac = cms.vdouble(2.,2.,5.) #(EE,FH,BH), in cm
+    process.hgcalLayerClusters.deltac = cms.vdouble(2.,4.,5.) #(EE,FH,BH), in cm
     #process.hgcalLayerClusters.deltac = cms.vdouble(1.5,2.,5.) #(EE,FH,BH), in cm
     #process.hgcalLayerClusters.logWeightZero = cms.double(3.5) #normal weighting if less than 0 (default -1)
     process.p = cms.Path(process.hgcalLayerClusters+process.ana)

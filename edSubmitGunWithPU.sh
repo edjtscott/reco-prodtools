@@ -22,7 +22,9 @@ QUEUE="8nh"
 NPART=1
 #PT=35
 
-TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_LogWeightingOff_PU200"
+NPU="200"
+
+TAG="escott_PDGid${PARTID}_nPart1_Pt${PT}_93X_PU$NPU"
 
 EOS="/eos/cms/store/group/dpg_hgcal/comm_hgcal/escott"
 
@@ -31,20 +33,16 @@ RELVAL="/RelValDoublePiPt25Eta17_27/CMSSW_9_0_0_pre5-PU25ns_90X_upgrade2023_real
 
 #DATE="20160729" #for "old" sample from Clemens
 
-#GSDDATE="20170727" #using PR as accepted, but with D17 now
-#GSDDATE="20170816"
-GSDDATE="20170824"
+GSDDATE="20170920"
 
-#RECODATE="20170727"
-RECODATE="20170824"
+RECODATE="20170920"
 
 EXTRALABEL=""
 #EXTRALABEL="_50mm"
 #EXTRALABEL="_EE2FH5BH5"
 #EXTRALABEL="_255_225"
 #EXTRALABEL="_1dot5"
-
-NPU="200"
+#EXTRALABEL=""
 
 PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIIFall16GS82-90X_upgrade2023_realistic_v1-v1/GEN-SIM"
 #PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIISpring17GS-90X_upgrade2023_realistic_v9-v1/GEN-SIM"
@@ -54,9 +52,9 @@ if [ "$TIER" == "GSD" ]
 then
   #EVTSPERJOB=10
   EVTSPERJOB=20
-  echo "python SubmitHGCalPGun.py --datTier $TIER --nevts $NEVTS --evtsperjob $EVTSPERJOB --queue $QUEUE --partID $PARTID --nPart $NPART --pTmin $PT --pTmax $PT --tag $TAG --eosArea $EOS --PU $NPU --PUDS $PUDS"
+  echo "python SubmitHGCalPGun.py --datTier $TIER --nevts $NEVTS --evtsperjob $EVTSPERJOB --queue $QUEUE --partID $PARTID --nPart $NPART --thresholdMin $PT --thresholdMax $PT --tag $TAG --eosArea $EOS --PU $NPU --PUDS $PUDS --etaMin 1.7 --etaMax 2.7"
   #python SubmitHGCalPGun.py --datTier $TIER --nevts $NEVTS --evtsperjob $EVTSPERJOB --queue $QUEUE --partID $PARTID --nPart $NPART --thresholdMin $PT --thresholdMax $PT --tag $TAG --eosArea $EOS --PU $NPU --PUDS $PUDS --dry-run
-  python SubmitHGCalPGun.py --datTier $TIER --nevts $NEVTS --evtsperjob $EVTSPERJOB --queue $QUEUE --partID $PARTID --nPart $NPART --thresholdMin $PT --thresholdMax $PT --tag $TAG --eosArea $EOS --PU $NPU --PUDS $PUDS
+  python SubmitHGCalPGun.py --datTier $TIER --nevts $NEVTS --evtsperjob $EVTSPERJOB --queue $QUEUE --partID $PARTID --nPart $NPART --thresholdMin $PT --thresholdMax $PT --tag $TAG --eosArea $EOS --PU $NPU --PUDS $PUDS --etaMin 1.7 --etaMax 2.7
 fi
 
 
@@ -74,6 +72,6 @@ then
   #EVTSPERJOB=40
   EVTSPERJOB=80
   echo "python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag $TAG${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$RECODATE"
-  python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag ${TAG}${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$RECODATE #--noReClust
+  python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --tag ${TAG}${EXTRALABEL} --eosArea $EOS --inDir FlatRandomPtGunProducer_${TAG}_$RECODATE --noReClust
   #python SubmitHGCalPGun.py --datTier $TIER --evtsperjob $EVTSPERJOB --queue $QUEUE --eosArea $EOS -r $RELVAL #--dry-run
 fi
