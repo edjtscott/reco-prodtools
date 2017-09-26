@@ -44,8 +44,9 @@ EXTRALABEL=""
 #EXTRALABEL="_1dot5"
 #EXTRALABEL=""
 
-PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIIFall16GS82-90X_upgrade2023_realistic_v1-v1/GEN-SIM"
+#PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIIFall16GS82-90X_upgrade2023_realistic_v1-v1/GEN-SIM"
 #PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIISpring17GS-90X_upgrade2023_realistic_v9-v1/GEN-SIM"
+PUDS="/MinBias_TuneCUETP8M1_14TeV-pythia8/PhaseIITDRSpring17GS-91X_upgrade2023_realistic_v2-v1/GEN-SIM"
 
 
 if [ "$TIER" == "GSD" ]
